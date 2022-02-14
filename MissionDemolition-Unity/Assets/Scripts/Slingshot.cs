@@ -61,10 +61,20 @@ public class Slingshot : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+<<<<<<< Updated upstream
             aimingMode = false;
             projectileRB.isKinematic = false;
             projectileRB.velocity = -mouseDelta * velocityMultipler;
             projectile = null; //forget the last instance
+=======
+            aimingMode = false; //we are no longer aiming
+            projectileRB.isKinematic = false; //the ball is no longer kinematic
+            projectileRB.velocity = -mouseDelta * velocityMultipler; //veloscity is multipled to the mousedelta
+
+            FollowCam.POI = projectile; //set the poi for camera
+
+            projectile = null; //forget the last instance (The instance still exsists but we do not have a reference to it)
+>>>>>>> Stashed changes
         }
 
 
