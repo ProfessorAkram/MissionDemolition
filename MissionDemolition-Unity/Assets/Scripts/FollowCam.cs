@@ -3,9 +3,9 @@
  * Date Created: Feb 09, 2022
  * 
  * Last Edited by: NA
- * Last Edited: Feb 09, 2022
+ * Last Edited: Feb 14, 2022
  * 
- * Description: Slingshot controller
+ * Description: camera follow controlls
 */
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +15,10 @@ public class FollowCam : MonoBehaviour
 {
     /**** VARIABLES ****/
     static public GameObject POI; //the static point of interest
+
+    [Header("Set in Inspector")]
+    public float easing = 0.05f;//amount of ease
+    public Vector2 minXY = Vector2.zero; 
 
     [Header("Set Dynamically")]
     public float camZ; //Desired Z posiiton of the camera
@@ -32,8 +36,16 @@ public class FollowCam : MonoBehaviour
 
         
         Vector3 destination = POI.transform.position;//Get the positition of the POI
+
+        destination.x = Mathf.Max(minXY.x, destination.x);
+        destination.y = Mathf.Max(minXY.y, destination.y);
+
+        destination = Vector3.Lerp(transform.position, destination, easing); //interpolate from current camera postion towards destination
+        
         destination.z = camZ; //reset the z of the destination to the camera z
         transform.position = destination; //Set position of the camera to the destination
+
+        Camera.main.orthographicSize = destination.y + 10; 
         
     }//end FixedUpdate()
 }
