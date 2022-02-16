@@ -32,9 +32,31 @@ public class FollowCam : MonoBehaviour
     // FixedUpdate will be a a constant frame rate
     void FixedUpdate()
     {
-        if (POI == null) return; //if there is no POI exit method
+        // if (POI == null) return; //if there is no POI exit method
 
-        Vector3 destination = POI.transform.position;//Get the positition of the POI
+        //Vector3 destination = POI.transform.position;//Get the positition of the POI
+
+        Vector3 destination; 
+        if(POI == null) //if no POI
+        {
+            destination = Vector3.zero; //destination is zero
+        }
+        else
+        {
+            destination = POI.transform.position;
+            if(POI.tag == "Projectile")
+            {
+                if (POI.GetComponent<Rigidbody>().IsSleeping())
+                {
+                    POI = null; //null the POI if the rigidbody is asleep
+                    return; //in next the update
+
+                }//end if (POI.GetComponent<Rigidbody>().IsSleeping())
+            }//end  if(POI.tag == "Projectile")
+        }//end if(POI == null) 
+
+
+
 
         //Limit the camera's minium XY values
         destination.x = Mathf.Max(miniumXY.x, destination.x); 
