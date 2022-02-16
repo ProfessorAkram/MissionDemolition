@@ -14,6 +14,9 @@ using UnityEngine;
 public class Slingshot : MonoBehaviour
 {
     /**** VARIABLES ****/
+    static private Slingshot S; 
+
+
     [Header("Set in Inspector")]
     public GameObject prefabProjectile; //projectile prefab
     public float velocityMultipler = 8f; //velocieity multipler
@@ -26,10 +29,20 @@ public class Slingshot : MonoBehaviour
     public bool aimingMode; //is the player aiming
     public Rigidbody projectileRB; //ridigbody of projectile
 
+    static public Vector3 Launch_Pos
+    {
+        get{ 
+            if(S == null) return Vector3.zero;
+            return S.launchPos;
+        }
+
+    }
 
     //Awake is called the start of the game
     private void Awake()
     {
+        S = this;
+
         /*** IS THIS REALLY NECESSARY ***/
         Transform launchPointTrans = transform.Find("LaunchPoint"); //find child object
         /*NOTE: GameObject.Find will search for a gameobject in the scene. To search a gameobject from a parent, use Transform.*/
