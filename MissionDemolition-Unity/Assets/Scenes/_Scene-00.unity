@@ -1093,7 +1093,7 @@ MonoBehaviour:
   uitLevel: {fileID: 880214129}
   uitShots: {fileID: 811456574}
   uitButton: {fileID: 802295451}
-  castlePos: {x: 0, y: 0, z: 0}
+  castlePos: {x: 50, y: -9.5, z: 0}
   castles:
   - {fileID: 8383353011876074266, guid: 92f4a9cd33a0c5149a1374393ca0c8bc, type: 3}
   level: 0
@@ -1448,7 +1448,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1732747177}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1164147289}
+        m_TargetAssemblyTypeName: MissionDemolition, Assembly-CSharp
+        m_MethodName: SwitchView
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1732747177
 MonoBehaviour:
   m_ObjectHideFlags: 0

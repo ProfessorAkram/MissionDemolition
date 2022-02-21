@@ -81,9 +81,14 @@ public class Slingshot : MonoBehaviour
             aimingMode = false; //we are no longer aiming
             projectileRB.isKinematic = false; //the ball is no longer kinematic
             projectileRB.velocity = -mouseDelta * velocityMultipler; //veloscity is multipled to the mousedelta
+           
             FollowCam.POI = projectile; //set the POI for the follow cam
             projectile = null; //forget the last instance (The instance still exsists but we do not have a reference to it)
+
+            MissionDemolition.ShotFired(); //run the ShotFired method
+            ProjectileLine.S.poi = projectile; //set the POI for the projectile line
         }
+
 
 
     }//end Update()
