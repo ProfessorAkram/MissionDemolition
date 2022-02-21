@@ -14,7 +14,7 @@ using UnityEngine;
 public class Goal : MonoBehaviour
 {
     /**** VARIABLES ****/
-    static private bool goalMet = false; //has the goal been met
+    static public bool goalMet = false; //has the goal been met
 
     private void OnTriggerEnter(Collider other)
     {
