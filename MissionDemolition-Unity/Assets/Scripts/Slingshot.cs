@@ -3,7 +3,7 @@
  * Date Created: Feb 09, 2022
  * 
  * Last Edited by: NA
- * Last Edited: Feb 09, 2022
+ * Last Edited: Feb 16, 2022
  * 
  * Description: Slingshot controller
 */
@@ -13,23 +13,33 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
+    static private Slingshot S; //set class as singleton
+    /*NOTE: this singleton is private so it is only accessiable by it's instance*/
+
     /**** VARIABLES ****/
     [Header("Set in Inspector")]
     public GameObject prefabProjectile; //projectile prefab
     public float velocityMultipler = 8f; //velocieity multipler
-
 
     [Header("Set in Dynamically")]
     public GameObject launchPoint; //launchPoint object
     public Vector3 launchPos; //launch position
     public GameObject projectile; //projectile instance
     public bool aimingMode; //is the player aiming
-    public Rigidbody projectileRB; //ridigbody of projectile
+    private Rigidbody projectileRB; //ridigbody of projectile
+
+    static public Vector3 LAUNCH_POS
+    {
+        get { if (S == null) return Vector3.zero; //if there is no slingshot, return null
+            return S.launchPos; //otherwise return the launchPos
+        }
+    }
 
 
     //Awake is called the start of the game
     private void Awake()
     {
+        S = this; //reference to self
         /*** IS THIS REALLY NECESSARY ***/
         Transform launchPointTrans = transform.Find("LaunchPoint"); //find child object
         /*NOTE: GameObject.Find will search for a gameobject in the scene. To search a gameobject from a parent, use Transform.*/
